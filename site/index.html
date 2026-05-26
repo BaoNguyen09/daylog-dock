@@ -18,23 +18,8 @@
   <section class="desktop-demo" aria-label="Daylog Dock running on Windows">
     <div class="wallpaper" aria-hidden="true"></div>
 
-    <header class="site-nav">
-      <a class="site-brand" href="https://daylog.thienbao.dev">Daylog Dock</a>
-      <nav aria-label="Site links">
-        <a href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">Download</a>
-        <a href="https://github.com/BaoNguyen09/daylog-dock">GitHub</a>
-      </nav>
-      <span class="site-time" aria-hidden="true">9:42 PM</span>
-    </header>
-
-    <aside class="demo-copy" aria-label="Product summary">
-      <p>PowerToys Command Palette Dock</p>
-      <h1>Daylog Dock</h1>
-      <a href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">Download for Windows</a>
-    </aside>
-
-    <main class="demo-stage">
-      <div class="cmdpal-dock" aria-label="Command Palette Dock">
+    <header class="site-nav" aria-label="Command Palette Dock">
+      <div class="top-dock">
         <button type="button" class="cmdpal-item" aria-label="Open folders">
           <span class="folder-glyph" aria-hidden="true"></span>
         </button>
@@ -43,7 +28,19 @@
           <span>Daylog</span>
         </button>
       </div>
+      <span class="site-time" aria-hidden="true">9:42 PM</span>
+    </header>
 
+    <aside class="demo-copy" aria-label="Product summary">
+      <p>PowerToys Command Palette Dock</p>
+      <h1>Daylog Dock</h1>
+      <div class="demo-links">
+        <a href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">Download for Windows</a>
+        <a href="https://github.com/BaoNguyen09/daylog-dock">GitHub</a>
+      </div>
+    </aside>
+
+    <main class="demo-stage">
       <article class="daylog-window" aria-label="Daylog editor">
         <header class="window-titlebar">
           <div class="window-title">
@@ -99,13 +96,13 @@
 
     <footer class="windows-taskbar" aria-label="Windows taskbar">
       <button type="button" class="start-button" aria-label="Start"></button>
-      <div class="taskbar-center" aria-hidden="true">
-        <span></span>
-        <span></span>
+      <div class="taskbar-center">
+        <button type="button" class="taskbar-app taskbar-app-explorer" aria-label="File Explorer"></button>
+        <button type="button" class="taskbar-app taskbar-app-browser" aria-label="Web browser"></button>
         <button type="button" class="daylog-task is-running" aria-label="Daylog">
           <img src="./favicon.png" width="21" height="21" alt="">
         </button>
-        <span></span>
+        <button type="button" class="taskbar-app taskbar-app-terminal" aria-label="Terminal"></button>
       </div>
       <div class="taskbar-tray">
         <span>ENG</span>
