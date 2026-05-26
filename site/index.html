@@ -29,7 +29,7 @@
     <div class="scene-intro">
       <p class="scene-tag">PowerToys · Command Palette Dock</p>
       <h1>Daylog Dock</h1>
-      <p class="scene-lead">A quiet daily note on Windows — tap <strong>Daylog</strong> on the Command Palette Dock below.</p>
+      <p class="scene-lead">A quiet daily note on Windows. Tap <strong>Daylog</strong> on the Command Palette Dock below.</p>
     </div>
 
     <div class="scene-dock-zone">
@@ -49,11 +49,9 @@
           <div class="panel-nav">
             <button type="button" class="panel-nav-btn" data-action="prev-day" aria-label="Previous day">&lt;</button>
             <h2 class="panel-date">Monday, May 25</h2>
-            <div class="panel-nav-right">
-              <button type="button" class="panel-nav-text" data-action="today" hidden>today</button>
-              <button type="button" class="panel-nav-btn" data-action="next-day" aria-label="Next day">&gt;</button>
-              <span class="panel-nav-text panel-nav-text--muted">folder</span>
-            </div>
+            <button type="button" class="panel-nav-text" data-action="today">today</button>
+            <button type="button" class="panel-nav-btn" data-action="next-day" aria-label="Next day">&gt;</button>
+            <button type="button" class="panel-nav-text" data-action="folder">folder</button>
           </div>
           <div
             class="panel-note"
@@ -64,8 +62,22 @@
             aria-multiline="true"
           ></div>
           <footer class="panel-foot">
-            <span>17px · Lato · Serif</span>
-            <span>Dark Mode · History</span>
+            <div class="panel-foot-group">
+              <button type="button" class="panel-foot-btn is-active">17px</button>
+              <span class="panel-foot-dot" aria-hidden="true">&#8226;</span>
+              <button type="button" class="panel-foot-btn is-active">Lato</button>
+              <span class="panel-foot-dot" aria-hidden="true">&#8226;</span>
+              <button type="button" class="panel-foot-btn">System</button>
+              <span class="panel-foot-dot" aria-hidden="true">&#8226;</span>
+              <button type="button" class="panel-foot-btn">Serif</button>
+              <span class="panel-foot-dot" aria-hidden="true">&#8226;</span>
+              <button type="button" class="panel-foot-btn">Random</button>
+            </div>
+            <div class="panel-foot-group">
+              <button type="button" class="panel-foot-btn">Dark Mode</button>
+              <span class="panel-foot-dot" aria-hidden="true">&#8226;</span>
+              <button type="button" class="panel-foot-btn">History</button>
+            </div>
           </footer>
         </div>
       </article>
@@ -95,7 +107,7 @@
   <main class="page">
     <section class="page-block" aria-labelledby="dock-title">
       <h2 id="dock-title">What is the Dock?</h2>
-      <p>PowerToys added a strip of extension buttons that floats above your taskbar. Pin Daylog there — one click opens the editor, autosave writes <code>yyyy-MM-dd.md</code> on disk.</p>
+      <p>PowerToys added a strip of extension buttons that floats above your taskbar. Pin Daylog there, one click opens the editor, autosave writes <code>yyyy-MM-dd.md</code> on disk.</p>
     </section>
 
     <section class="page-grid" aria-label="Features">
@@ -116,13 +128,13 @@
     <section class="page-block" aria-labelledby="install-title">
       <h2 id="install-title">Install</h2>
       <ol>
-        <li>Install PowerToys — enable Command Palette and Dock.</li>
+        <li>Install PowerToys, enable Command Palette and Dock.</li>
         <li>Get Daylog Dock from <a href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">GitHub Releases</a>.</li>
-        <li>Reload extensions → pin Daylog on the Dock → pick a folder.</li>
+        <li>Reload extensions, pin Daylog on the Dock, pick a folder.</li>
       </ol>
     </section>
   </main>
 
-  <script src="./demo.js" defer></script>
+  <script src="./demo.js?v=3" defer></script>
 </body>
 </html>

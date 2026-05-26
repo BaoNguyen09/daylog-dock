@@ -147,8 +147,8 @@ code {
 
 .panel {
   display: flex;
-  width: min(100%, 400px);
-  max-height: min(52vh, 420px);
+  width: min(100%, 360px);
+  max-height: min(58vh, 480px);
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--panel-border);
@@ -178,8 +178,8 @@ html.is-panel-open .panel {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  border-bottom: 1px solid #ebe4d8;
-  background: linear-gradient(180deg, #faf8f3 0%, #f3efe8 100%);
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
 }
 
 .panel-title {
@@ -224,76 +224,66 @@ html.is-panel-open .panel {
   min-height: 0;
   flex: 1;
   flex-direction: column;
-  padding: 14px 16px 12px;
+  padding: 8px 18px 12px;
 }
 
+/* Matches DaylogEditorWindow header: < | date | today | > | folder */
 .panel-nav {
   display: grid;
   align-items: center;
-  gap: 4px 8px;
-  grid-template-columns: 28px 1fr auto;
+  gap: 0 6px;
+  grid-template-columns: auto 1fr auto auto auto;
+  margin-bottom: 2px;
 }
 
 .panel-date {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.02rem;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   text-align: center;
+  transition: opacity 0.15s ease;
 }
 
-.panel-nav-btn {
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: none;
-  border-radius: 4px;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 1rem;
-  line-height: 1;
+.panel-date.is-updating {
+  opacity: 0.35;
 }
 
-.panel-nav-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--ink);
-}
-
-.panel-nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.82rem;
-}
-
+.panel-nav-btn,
 .panel-nav-text {
   border: none;
-  background: none;
-  color: var(--muted);
+  background: transparent;
+  color: #1c1c1c;
   cursor: pointer;
-  padding: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 3px 7px;
 }
 
+.panel-nav-btn:hover,
 .panel-nav-text:hover {
-  color: var(--ink);
+  background: rgba(0, 0, 0, 0.04);
 }
 
-.panel-nav-text--muted {
+.panel-nav-text[data-action="today"]:disabled {
+  opacity: 0.45;
   cursor: default;
 }
 
-.panel-nav-text--muted:hover {
-  color: var(--muted);
+.panel-nav-text[data-action="today"]:disabled:hover {
+  background: transparent;
 }
 
 .panel-note {
   flex: 1;
-  min-height: 120px;
-  margin-top: 12px;
+  min-height: 200px;
+  margin-top: 6px;
   overflow-y: auto;
-  font-size: 0.92rem;
-  line-height: 1.55;
+  color: #1e1e1e;
+  font-family: Lato, "Segoe UI", Consolas, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
   outline: none;
   white-space: pre-wrap;
 }
@@ -307,13 +297,47 @@ html.is-panel-open .panel {
 .panel-foot {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: 6px;
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid #ebe5da;
-  color: var(--muted);
-  font-size: 0.72rem;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 0 8px;
+  opacity: 0.72;
+  transition: opacity 0.15s ease;
+}
+
+.panel-foot:hover {
+  opacity: 1;
+}
+
+.panel-foot-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.panel-foot-btn {
+  border: none;
+  background: transparent;
+  color: #767676;
+  cursor: pointer;
+  font-family: Lato, "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  padding: 2px;
+}
+
+.panel-foot-btn:hover {
+  color: #1c1c1c;
+}
+
+.panel-foot-btn.is-active {
+  color: #1c1c1c;
+}
+
+.panel-foot-dot {
+  color: #919191;
+  font-size: 13px;
+  user-select: none;
 }
 
 /* Command Palette Dock */
