@@ -20,40 +20,99 @@
       <div class="copy">
         <p class="eyebrow">Windows · PowerToys Command Palette</p>
         <h1 id="hero-title">Daylog Dock</h1>
-        <p class="lede">A quiet daily markdown note app for Windows, built into the PowerToys Command Palette Dock.</p>
+        <p class="lede">A quiet daily markdown note on Windows — pinned to the <strong>Command Palette Dock</strong>, not the old taskbar tray.</p>
+        <p class="lede lede-sub">Most people have never seen the Dock yet. Click it in the demo → write one file per day → close and forget.</p>
         <div class="actions" aria-label="Primary actions">
           <a class="button primary" href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">Get Daylog Dock</a>
           <a class="button secondary" href="https://github.com/BaoNguyen09/daylog-dock">Source on GitHub</a>
         </div>
       </div>
 
-      <div class="product-frame" aria-label="Daylog Dock editor preview">
-        <div class="window-bar">
-          <span>Daylog</span>
-          <span class="window-controls">− □ ×</span>
-        </div>
-        <div class="editor-preview">
-          <header class="editor-top">
-            <span>&lt;</span>
-            <strong>Monday, May 25</strong>
-            <nav>
-              <span>today</span>
-              <span>&gt;</span>
-              <span>folder</span>
-            </nav>
-          </header>
-          <div class="note">
-            <p>tasks</p>
-            <p>- write the day down while it is still fresh</p>
-            <p>- keep the file local</p>
-            <p>- come back tomorrow</p>
+      <div class="win-stage-wrap">
+        <p class="demo-caption" id="demo-caption">Try it: click <strong>Daylog</strong> on the Dock below</p>
+        <div class="win-stage" aria-label="Interactive Windows 11 demo" data-state="dock">
+          <div class="win-wallpaper" aria-hidden="true"></div>
+
+          <div class="win-editor" hidden aria-hidden="true">
+            <div class="win-chrome">
+              <div class="win-title">
+                <img class="win-title-icon" src="./favicon.png" width="16" height="16" alt="">
+                <span>Daylog</span>
+              </div>
+              <div class="win-controls" aria-hidden="true">
+                <button type="button" class="win-control" data-action="minimize" aria-label="Minimize">&#8722;</button>
+                <button type="button" class="win-control" aria-label="Maximize">&#9633;</button>
+                <button type="button" class="win-control" data-action="close" aria-label="Close">&#10005;</button>
+              </div>
+            </div>
+            <div class="editor-body">
+              <header class="editor-top">
+                <button type="button" class="editor-nav" data-action="prev-day" aria-label="Previous day">&lt;</button>
+                <h2 class="editor-date">Monday, May 25</h2>
+                <nav class="editor-top-nav" aria-label="Date shortcuts">
+                  <button type="button" class="editor-link" data-action="today">today</button>
+                  <button type="button" class="editor-nav" data-action="next-day" aria-label="Next day">&gt;</button>
+                  <span class="editor-link editor-link--static">folder</span>
+                </nav>
+              </header>
+              <div
+                class="editor-note"
+                contenteditable="true"
+                spellcheck="true"
+                role="textbox"
+                aria-label="Today's note"
+                aria-multiline="true"
+              ></div>
+              <footer class="editor-foot">
+                <span>17px · Lato · System · Serif · Random</span>
+                <span>Dark Mode · History</span>
+              </footer>
+            </div>
           </div>
-          <footer>
-            <span>17px · Lato · Serif</span>
-            <span>Dark Mode · History</span>
-          </footer>
+
+          <div class="cmdpal-dock" role="toolbar" aria-label="Command Palette Dock">
+            <button type="button" class="dock-item" aria-label="Sample dock extension">
+              <span class="dock-glyph" aria-hidden="true">⌘</span>
+              <span class="dock-label">Palette</span>
+            </button>
+            <button type="button" class="dock-item dock-item--daylog" aria-expanded="false" aria-label="Open Daylog Dock">
+              <img class="dock-icon" src="./favicon.png" width="28" height="28" alt="">
+              <span class="dock-label">Daylog</span>
+            </button>
+            <button type="button" class="dock-item" aria-label="Sample dock extension">
+              <span class="dock-glyph" aria-hidden="true">◷</span>
+              <span class="dock-label">Timer</span>
+            </button>
+          </div>
+
+          <div class="win-taskbar" aria-hidden="true">
+            <div class="taskbar-start"></div>
+            <div class="taskbar-search">Search</div>
+            <div class="taskbar-apps">
+              <span class="taskbar-pill"></span>
+              <span class="taskbar-pill"></span>
+              <span class="taskbar-pill taskbar-pill--active"></span>
+            </div>
+            <div class="taskbar-tray">
+              <span>ENG</span>
+              <span>9:42 PM</span>
+            </div>
+          </div>
+
+          <p class="demo-hint" aria-live="polite">Click <strong>Daylog</strong> on the Dock</p>
         </div>
       </div>
+    </section>
+
+    <section class="dock-explainer" aria-labelledby="dock-title">
+      <h2 id="dock-title">What is the Dock?</h2>
+      <p>PowerToys added a <strong>Command Palette Dock</strong> — a strip of extension buttons above your taskbar. Daylog lives there, like Daily lives in the macOS menu bar. One tap opens your note; autosave writes a local markdown file.</p>
+      <ol class="dock-steps">
+        <li>Enable Command Palette + Dock in PowerToys</li>
+        <li>Install Daylog Dock and reload extensions</li>
+        <li>Pin <strong>Daylog</strong> on the Dock</li>
+        <li>Click → write → close</li>
+      </ol>
     </section>
 
     <section class="details" aria-label="Product details">
@@ -87,6 +146,6 @@
       <pre><code>&lt;chosen-folder&gt;\Daylog\yyyy-MM\yyyy-MM-dd.md</code></pre>
     </section>
   </main>
+  <script src="./demo.js" defer></script>
 </body>
 </html>
-
