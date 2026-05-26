@@ -21,13 +21,8 @@
     "NOW: 1 only at a time\n" +
     "NEXT: 3 max\n" +
     "LATER: 5 max\n" +
-    "  - 1 session on LSP\n" +
-    "  - reply email\n" +
-    "  - clean up notes\n" +
-    "WAITING: unlimited, but review daily\n" +
-    "DONE: unlimited\n" +
-    "  - clean both my phone photos\n" +
-    "  - prepare some goals/checklist";
+    "WAITING: review daily\n" +
+    "DONE: clean phone photos";
 
   function formatDate(d) {
     return d.toLocaleDateString("en-US", {
@@ -43,30 +38,21 @@
     if (dateEl) dateEl.textContent = formatDate(d);
     if (btnToday) {
       btnToday.hidden = offset === 0;
-      btnToday.setAttribute("aria-hidden", offset === 0 ? "true" : "false");
     }
   }
 
   function setEditorOpen(open) {
     stage.classList.toggle("is-editor-open", open);
     if (editor) {
-      editor.hidden = !open;
       editor.setAttribute("aria-hidden", open ? "false" : "true");
       if ("inert" in editor) editor.inert = !open;
     }
-    if (dockBtn) dockBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    if (hint) hint.classList.toggle("is-hidden", open);
-    if (open && noteEl) {
-      noteEl.focus();
+    if (dockBtn) {
+      dockBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      dockBtn.classList.toggle("is-active", open);
     }
-  }
-
-  function openEditor() {
-    setEditorOpen(true);
-  }
-
-  function closeEditor() {
-    setEditorOpen(false);
+    if (hint) hint.classList.toggle("is-hidden", open);
+    if (open && noteEl) noteEl.focus();
   }
 
   if (noteEl && !noteEl.textContent.trim()) {
@@ -80,17 +66,17 @@
       noteEl?.focus();
       return;
     }
-    openEditor();
+    setEditorOpen(true);
   });
 
   btnMin?.addEventListener("click", (e) => {
     e.stopPropagation();
-    closeEditor();
+    setEditorOpen(false);
   });
 
   btnClose?.addEventListener("click", (e) => {
     e.stopPropagation();
-    closeEditor();
+    setEditorOpen(false);
   });
 
   btnPrev?.addEventListener("click", (e) => {

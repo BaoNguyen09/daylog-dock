@@ -20,8 +20,7 @@
       <div class="copy">
         <p class="eyebrow">Windows · PowerToys Command Palette</p>
         <h1 id="hero-title">Daylog Dock</h1>
-        <p class="lede">A quiet daily markdown note on Windows — pinned to the <strong>Command Palette Dock</strong>, not the old taskbar tray.</p>
-        <p class="lede lede-sub">Most people have never seen the Dock yet. Click it in the demo → write one file per day → close and forget.</p>
+        <p class="lede">A quiet daily markdown note for Windows — one tap from the <strong>Command Palette Dock</strong>.</p>
         <div class="actions" aria-label="Primary actions">
           <a class="button primary" href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">Get Daylog Dock</a>
           <a class="button secondary" href="https://github.com/BaoNguyen09/daylog-dock">Source on GitHub</a>
@@ -29,17 +28,16 @@
       </div>
 
       <div class="win-stage-wrap">
-        <p class="demo-caption" id="demo-caption">Try it: click <strong>Daylog</strong> on the Dock below</p>
-        <div class="win-stage" aria-label="Interactive Windows 11 demo" data-state="dock">
+        <div class="win-stage" aria-label="Interactive Windows 11 demo">
           <div class="win-wallpaper" aria-hidden="true"></div>
 
-          <div class="win-editor" hidden aria-hidden="true">
+          <div class="win-editor" aria-hidden="true" inert>
             <div class="win-chrome">
               <div class="win-title">
                 <img class="win-title-icon" src="./favicon.png" width="16" height="16" alt="">
                 <span>Daylog</span>
               </div>
-              <div class="win-controls" aria-hidden="true">
+              <div class="win-controls">
                 <button type="button" class="win-control" data-action="minimize" aria-label="Minimize">&#8722;</button>
                 <button type="button" class="win-control" aria-label="Maximize">&#9633;</button>
                 <button type="button" class="win-control" data-action="close" aria-label="Close">&#10005;</button>
@@ -50,7 +48,7 @@
                 <button type="button" class="editor-nav" data-action="prev-day" aria-label="Previous day">&lt;</button>
                 <h2 class="editor-date">Monday, May 25</h2>
                 <nav class="editor-top-nav" aria-label="Date shortcuts">
-                  <button type="button" class="editor-link" data-action="today">today</button>
+                  <button type="button" class="editor-link" data-action="today" hidden>today</button>
                   <button type="button" class="editor-nav" data-action="next-day" aria-label="Next day">&gt;</button>
                   <span class="editor-link editor-link--static">folder</span>
                 </nav>
@@ -64,32 +62,32 @@
                 aria-multiline="true"
               ></div>
               <footer class="editor-foot">
-                <span>17px · Lato · System · Serif · Random</span>
+                <span>17px · Lato · Serif</span>
                 <span>Dark Mode · History</span>
               </footer>
             </div>
           </div>
 
-          <div class="cmdpal-dock" role="toolbar" aria-label="Command Palette Dock">
-            <button type="button" class="dock-item" aria-label="Sample dock extension">
-              <span class="dock-glyph" aria-hidden="true">⌘</span>
-              <span class="dock-label">Palette</span>
-            </button>
-            <button type="button" class="dock-item dock-item--daylog" aria-expanded="false" aria-label="Open Daylog Dock">
-              <img class="dock-icon" src="./favicon.png" width="28" height="28" alt="">
-              <span class="dock-label">Daylog</span>
-            </button>
-            <button type="button" class="dock-item" aria-label="Sample dock extension">
-              <span class="dock-glyph" aria-hidden="true">◷</span>
-              <span class="dock-label">Timer</span>
-            </button>
+          <div class="cmdpal-dock-shell">
+            <p class="demo-hint" aria-live="polite">Click <strong>Daylog</strong> on the Dock</p>
+            <div class="cmdpal-dock" role="toolbar" aria-label="Command Palette Dock">
+              <button type="button" class="dock-item" aria-label="Sample dock extension">
+                <span class="dock-glyph" aria-hidden="true">⌘</span>
+              </button>
+              <button type="button" class="dock-item dock-item--daylog" aria-expanded="false" aria-label="Open Daylog Dock">
+                <img class="dock-icon" src="./favicon.png" width="24" height="24" alt="">
+                <span class="dock-label">Daylog</span>
+              </button>
+              <button type="button" class="dock-item" aria-label="Sample dock extension">
+                <span class="dock-glyph" aria-hidden="true">◷</span>
+              </button>
+            </div>
           </div>
 
           <div class="win-taskbar" aria-hidden="true">
-            <div class="taskbar-start"></div>
+            <div class="taskbar-start" aria-hidden="true"></div>
             <div class="taskbar-search">Search</div>
-            <div class="taskbar-apps">
-              <span class="taskbar-pill"></span>
+            <div class="taskbar-apps" aria-hidden="true">
               <span class="taskbar-pill"></span>
               <span class="taskbar-pill taskbar-pill--active"></span>
             </div>
@@ -98,8 +96,6 @@
               <span>9:42 PM</span>
             </div>
           </div>
-
-          <p class="demo-hint" aria-live="polite">Click <strong>Daylog</strong> on the Dock</p>
         </div>
       </div>
     </section>
