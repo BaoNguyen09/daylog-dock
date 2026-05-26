@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DaylogDockExtension (Package)": {
+      "commandName": "MsixPackage",
+      "doNotLaunchApp": true
+    },
+    "DaylogDockExtension (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

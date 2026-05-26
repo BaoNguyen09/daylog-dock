@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <WindowsPackageType>None</WindowsPackageType>
+    <ApplicationIcon>..\DaylogDockExtension\Assets\Daylog.ico</ApplicationIcon>
+    <RootNamespace>DaylogDockExtension</RootNamespace>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishTrimmed>false</PublishTrimmed>
+    <UseWinUI>true</UseWinUI>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <Nullable>enable</Nullable>
+    <Platforms>x64;ARM64</Platforms>
+    <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\DaylogDockExtension\Assets\Daylog.ico" Link="Daylog.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\DaylogDockExtension\Services\DaylogMarkdownStore.cs" Link="Services\DaylogMarkdownStore.cs" />
+    <Compile Include="..\DaylogDockExtension\Services\DaylogSettings.cs" Link="Services\DaylogSettings.cs" />
+    <Compile Include="..\DaylogDockExtension\Services\DaylogState.cs" Link="Services\DaylogState.cs" />
+    <Compile Include="..\DaylogDockExtension\Services\DaylogShell.cs" Link="Services\DaylogShell.cs" />
+    <Compile Include="..\DaylogDockExtension\Editor\DaylogEditorWindow.cs" Link="Editor\DaylogEditorWindow.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daylog Dock</title>
+  <meta name="description" content="A quiet daily markdown note app for Windows, built into the PowerToys Command Palette Dock.">
+  <meta property="og:title" content="Daylog Dock">
+  <meta property="og:description" content="One note per day. Local markdown files. Opens from Command Palette Dock.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daylog.thienbao.dev">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="copy">
+        <p class="eyebrow">Windows · PowerToys Command Palette</p>
+        <h1 id="hero-title">Daylog Dock</h1>
+        <p class="lede">A quiet daily markdown note app for Windows, built into the PowerToys Command Palette Dock.</p>
+        <div class="actions" aria-label="Primary actions">
+          <a class="button primary" href="https://github.com/BaoNguyen09/daylog-dock/releases/latest">Download for Windows</a>
+          <a class="button secondary" href="https://github.com/BaoNguyen09/daylog-dock">Source on GitHub</a>
+        </div>
+      </div>
+
+      <div class="product-frame" aria-label="Daylog Dock editor preview">
+        <div class="window-bar">
+          <span>Daylog</span>
+          <span class="window-controls">− □ ×</span>
+        </div>
+        <div class="editor-preview">
+          <header class="editor-top">
+            <span>&lt;</span>
+            <strong>Monday, May 25</strong>
+            <nav>
+              <span>today</span>
+              <span>&gt;</span>
+              <span>folder</span>
+            </nav>
+          </header>
+          <div class="note">
+            <p>tasks</p>
+            <p>- write the day down while it is still fresh</p>
+            <p>- keep the file local</p>
+            <p>- come back tomorrow</p>
+          </div>
+          <footer>
+            <span>17px · Lato · Serif</span>
+            <span>Dark Mode · History</span>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" aria-label="Product details">
+      <article>
+        <h2>One note per day</h2>
+        <p>Each date maps to one editable markdown note. Tomorrow gets a new file automatically.</p>
+      </article>
+      <article>
+        <h2>Local markdown</h2>
+        <p>Daylog writes plain files under your chosen folder. No account, sync, or cloud lock-in.</p>
+      </article>
+      <article>
+        <h2>Dock-first</h2>
+        <p>Open the editor from Command Palette Dock, write, and leave. Autosave handles the rest.</p>
+      </article>
+    </section>
+
+    <section class="install" aria-labelledby="install-title">
+      <h2 id="install-title">Install</h2>
+      <ol>
+        <li>Install PowerToys and enable Command Palette Dock.</li>
+        <li>Install Daylog Dock from the latest GitHub Release.</li>
+        <li>Reload Command Palette extensions.</li>
+        <li>Add Daylog Dock to the Dock.</li>
+        <li>Choose a folder and write.</li>
+      </ol>
+    </section>
+
+    <section class="storage" aria-labelledby="storage-title">
+      <h2 id="storage-title">File layout</h2>
+      <pre><code>&lt;chosen-folder&gt;\Daylog\yyyy-MM\yyyy-MM-dd.md</code></pre>
+    </section>
+  </main>
+</body>
+</html>
+

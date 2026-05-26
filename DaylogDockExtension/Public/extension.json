@@ -1,0 +1,6 @@
+{
+  "id": "daylog.dock",
+  "title": "Daylog",
+  "shortDescription": "Daily markdown journal in Command Palette and the dock.",
+  "icon": "icon.png"
+}
