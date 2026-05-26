@@ -68,30 +68,32 @@ button {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 0 18px;
-  background: rgba(23, 23, 27, 0.82);
-  backdrop-filter: blur(24px) saturate(1.2);
+  min-height: 34px;
+  padding: 0 10px;
+  background: rgba(24, 24, 24, 0.96);
+  backdrop-filter: blur(18px) saturate(1.1);
+  box-shadow: inset 0 -1px rgba(255, 255, 255, 0.05);
   font-size: 13px;
 }
 
-.top-dock {
+.dock-left {
   display: flex;
-  grid-column: 2;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-width: min(92vw, 430px);
-  min-height: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 5px;
-  background: rgba(23, 23, 25, 0.9);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.48);
-  backdrop-filter: blur(28px) saturate(1.2);
+  justify-self: start;
+  gap: 10px;
+}
+
+.dock-status {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
 }
 
 .site-time {
-  grid-column: 3;
-  justify-self: end;
   opacity: 0.82;
 }
 
@@ -157,37 +159,31 @@ button {
   padding: 5px 9px;
 }
 
+.cmdpal-item-daylog {
+  grid-column: 2;
+  justify-self: center;
+  font-size: 13px;
+}
+
+.dock-app {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.dock-app:hover,
 .cmdpal-item:hover,
 .cmdpal-item.is-active {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.cmdpal-item-daylog {
-  font-size: 13px;
-}
-
+.dock-app img,
 .cmdpal-item-daylog img {
   border-radius: 4px;
-}
-
-.folder-glyph {
-  width: 16px;
-  height: 12px;
-  border: 1.5px solid rgba(255, 255, 255, 0.82);
-  border-radius: 2px;
-  position: relative;
-}
-
-.folder-glyph::before {
-  position: absolute;
-  top: -5px;
-  left: 1px;
-  width: 7px;
-  height: 5px;
-  border: 1.5px solid rgba(255, 255, 255, 0.82);
-  border-bottom: 0;
-  border-radius: 2px 2px 0 0;
-  content: "";
 }
 
 .daylog-window {
@@ -369,48 +365,8 @@ button {
 }
 
 .taskbar-app {
-  position: relative;
   display: grid;
   place-items: center;
-}
-
-.taskbar-app::before,
-.taskbar-app::after {
-  content: "";
-}
-
-.taskbar-app-explorer::before {
-  width: 22px;
-  height: 15px;
-  border-radius: 3px;
-  background: linear-gradient(#ffd66d 0 38%, #e9aa25 38% 100%);
-  box-shadow: 0 -4px 0 -1px #f6c14b;
-}
-
-.taskbar-app-browser::before {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, #2f7fff 0 29%, #ffffff 30% 42%, transparent 43%),
-    conic-gradient(#e94235 0 34%, #f5c542 34% 66%, #22a55a 66% 100%);
-}
-
-.taskbar-app-terminal::before {
-  width: 23px;
-  height: 17px;
-  border-radius: 4px;
-  background: #252525;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-}
-
-.taskbar-app-terminal::after {
-  position: absolute;
-  width: 10px;
-  height: 6px;
-  border-left: 2px solid #eeeeee;
-  border-bottom: 2px solid #eeeeee;
-  transform: translate(-2px, -1px) skewX(-18deg);
 }
 
 .daylog-task {
@@ -494,8 +450,13 @@ button {
     display: none;
   }
 
-  .top-dock {
-    min-width: min(74vw, 380px);
+  .dock-status {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .dock-status span:nth-child(n + 3) {
+    display: none;
   }
 
   .daylog-window {
@@ -517,7 +478,7 @@ button {
     padding-top: 6px;
   }
 
-  .top-dock {
+  .site-nav {
     min-height: 30px;
   }
 
