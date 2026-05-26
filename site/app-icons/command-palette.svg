@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-label="Command Palette">
+  <defs>
+    <linearGradient id="bolt" x1="6" y1="2" x2="18" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#45f3ff"/>
+      <stop offset="0.45" stop-color="#4c7dff"/>
+      <stop offset="1" stop-color="#8e42ff"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bolt)" d="M10.2 2.5h8.2l-4.8 7.4h4.6L8.8 22l2.1-8H5.6l4.6-11.5z"/>
+</svg>

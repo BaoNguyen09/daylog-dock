@@ -87,7 +87,6 @@ button {
   display: flex;
   align-items: center;
   justify-self: end;
-  gap: 14px;
   color: rgba(255, 255, 255, 0.88);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
@@ -447,15 +446,6 @@ button {
 
 @media (max-width: 960px) {
   .demo-copy {
-    display: none;
-  }
-
-  .dock-status {
-    gap: 10px;
-    font-size: 12px;
-  }
-
-  .dock-status span:nth-child(n + 3) {
     display: none;
   }
 
