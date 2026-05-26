@@ -82,25 +82,45 @@
         </div>
       </article>
 
-      <div class="dock" role="toolbar" aria-label="Command Palette Dock">
-        <button type="button" class="dock-btn" aria-label="Palette">
-          <span class="dock-btn-icon" aria-hidden="true">⌘</span>
-        </button>
-        <button type="button" class="dock-btn dock-btn--daylog is-active" aria-expanded="true" aria-label="Daylog Dock">
-          <img src="./favicon.png" width="22" height="22" alt="">
-          <span class="dock-btn-label">Daylog</span>
-        </button>
-        <button type="button" class="dock-btn" aria-label="Timer">
-          <span class="dock-btn-icon" aria-hidden="true">◷</span>
-        </button>
+      <div class="cmdpal-wrap">
+        <p class="cmdpal-label">Command Palette Dock</p>
+        <div class="dock" role="toolbar" aria-label="Command Palette Dock">
+          <button type="button" class="dock-btn" aria-label="Palette">
+            <span class="dock-btn-icon" aria-hidden="true">⌘</span>
+          </button>
+          <button type="button" class="dock-btn dock-btn--daylog is-active" aria-expanded="true" aria-label="Open Daylog Dock">
+            <img src="./favicon.png" width="22" height="22" alt="">
+            <span class="dock-btn-label">Daylog</span>
+          </button>
+          <button type="button" class="dock-btn" aria-label="Timer">
+            <span class="dock-btn-icon" aria-hidden="true">◷</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <footer class="taskbar" aria-hidden="true">
-      <span class="taskbar-logo" aria-hidden="true"></span>
-      <span class="taskbar-search">Search</span>
-      <span class="taskbar-spacer"></span>
-      <span class="taskbar-tray">ENG · 9:42 PM</span>
+    <footer class="taskbar" aria-label="Windows taskbar">
+      <button type="button" class="taskbar-start" aria-label="Start"></button>
+      <div class="taskbar-center">
+        <div class="taskbar-search">
+          <span class="taskbar-search-icon" aria-hidden="true"></span>
+          Search
+        </div>
+        <div class="taskbar-apps" aria-hidden="true">
+          <span class="taskbar-app"></span>
+          <span class="taskbar-app"></span>
+          <span class="taskbar-app"></span>
+          <button type="button" class="taskbar-app taskbar-app--daylog is-running" aria-label="Daylog">
+            <img src="./favicon.png" width="20" height="20" alt="">
+          </button>
+          <span class="taskbar-app"></span>
+        </div>
+      </div>
+      <div class="taskbar-tray">
+        <span class="taskbar-tray-icons" aria-hidden="true"></span>
+        <span>ENG</span>
+        <span class="taskbar-clock">9:42 PM</span>
+      </div>
     </footer>
   </section>
 
@@ -135,6 +155,6 @@
     </section>
   </main>
 
-  <script src="./demo.js?v=3" defer></script>
+  <script src="./demo.js?v=4" defer></script>
 </body>
 </html>

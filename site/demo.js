@@ -5,24 +5,19 @@
   const dateEl = document.querySelector(".panel-date");
   const noteEl = document.querySelector(".panel-note");
   const clockEl = document.querySelector(".scene-clock");
+  const taskbarClock = document.querySelector(".taskbar-clock");
 
   const baseDate = new Date(2026, 4, 25);
   let offset = 0;
 
-  const notesByOffset = {
-    0:
-      "- hang out with interns\n" +
-      "- buy/get some chairs for the apartment\n" +
-      "- reply email to professor\n" +
-      "- buy: mesh wash bag\n" +
-      "\n" +
-      "BACKLOG\n" +
-      "- sign lease of new apt\n" +
-      "- update my resume for summer apps\n" +
-      "- whiten my necklace",
-    "-1": "- yesterday's note\n- what got done?",
-    1: "- tomorrow\n- plan the week",
-  };
+  const PLACEHOLDER_TODAY =
+    "- write the day down while it is still fresh\n" +
+    "- keep the file local\n" +
+    "- come back tomorrow";
+
+  const PLACEHOLDER_OTHER =
+    "- this is placeholder demo text\n" +
+    "- your real notes stay on your machine only";
 
   function formatDate(d) {
     return d.toLocaleDateString("en-US", {
@@ -34,17 +29,20 @@
 
   function formatClock() {
     return new Date().toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  }
+
+  function formatTrayDate() {
+    return new Date().toLocaleString("en-US", {
       hour: "numeric",
       minute: "2-digit",
     });
   }
 
   function noteForOffset(dayOffset) {
-    if (notesByOffset[dayOffset]) return notesByOffset[dayOffset];
-    if (dayOffset < 0) return "- past day\n- empty or older tasks";
-    return "- future day\n- plan ahead";
+    return dayOffset === 0 ? PLACEHOLDER_TODAY : PLACEHOLDER_OTHER;
   }
 
   function renderDate() {
@@ -77,6 +75,7 @@
       panel.setAttribute("aria-hidden", open ? "false" : "true");
       if ("inert" in panel) panel.inert = !open;
     }
+    document.querySelector(".taskbar-app--daylog")?.classList.toggle("is-running", open);
     if (open && noteEl) noteEl.focus();
   }
 
@@ -86,10 +85,17 @@
   }
 
   renderDate();
-  if (clockEl) clockEl.textContent = formatClock();
+  const clockText = formatClock();
+  if (clockEl) clockEl.textContent = clockText;
+  if (taskbarClock) taskbarClock.textContent = clockText;
 
   dockBtn?.addEventListener("click", () => {
     setPanelOpen(!root.classList.contains("is-panel-open"));
+  });
+
+  document.querySelector(".taskbar-app--daylog")?.addEventListener("click", () => {
+    setPanelOpen(true);
+    dockBtn?.focus();
   });
 
   panel?.addEventListener("click", (e) => {
