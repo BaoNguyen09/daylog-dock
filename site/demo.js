@@ -1,17 +1,11 @@
 (function () {
-  const stage = document.querySelector(".win-stage");
-  if (!stage) return;
-
-  const editor = stage.querySelector(".win-editor");
-  const dockBtn = stage.querySelector(".dock-item--daylog");
-  const hint = stage.querySelector(".demo-hint");
-  const dateEl = stage.querySelector(".editor-date");
-  const noteEl = stage.querySelector(".editor-note");
-  const btnPrev = stage.querySelector('[data-action="prev-day"]');
-  const btnNext = stage.querySelector('[data-action="next-day"]');
-  const btnToday = stage.querySelector('[data-action="today"]');
-  const btnMin = stage.querySelector('[data-action="minimize"]');
-  const btnClose = stage.querySelector('[data-action="close"]');
+  const root = document.documentElement;
+  const panel = document.querySelector(".panel");
+  const dockBtn = document.querySelector(".dock-btn--daylog");
+  const dateEl = document.querySelector(".panel-date");
+  const noteEl = document.querySelector(".panel-note");
+  const clockEl = document.querySelector(".scene-clock");
+  const btnToday = document.querySelector('[data-action="today"]');
 
   const baseDate = new Date(2026, 4, 25);
   let offset = 0;
@@ -32,26 +26,32 @@
     });
   }
 
+  function formatClock() {
+    return new Date().toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  }
+
   function renderDate() {
     const d = new Date(baseDate);
     d.setDate(d.getDate() + offset);
     if (dateEl) dateEl.textContent = formatDate(d);
-    if (btnToday) {
-      btnToday.hidden = offset === 0;
-    }
+    if (btnToday) btnToday.hidden = offset === 0;
   }
 
-  function setEditorOpen(open) {
-    stage.classList.toggle("is-editor-open", open);
-    if (editor) {
-      editor.setAttribute("aria-hidden", open ? "false" : "true");
-      if ("inert" in editor) editor.inert = !open;
-    }
+  function setPanelOpen(open) {
+    root.classList.toggle("is-panel-open", open);
     if (dockBtn) {
       dockBtn.setAttribute("aria-expanded", open ? "true" : "false");
       dockBtn.classList.toggle("is-active", open);
     }
-    if (hint) hint.classList.toggle("is-hidden", open);
+    if (panel) {
+      panel.setAttribute("aria-hidden", open ? "false" : "true");
+      if ("inert" in panel) panel.inert = !open;
+    }
     if (open && noteEl) noteEl.focus();
   }
 
@@ -60,47 +60,40 @@
   }
 
   renderDate();
+  if (clockEl) clockEl.textContent = formatClock();
 
   dockBtn?.addEventListener("click", () => {
-    if (stage.classList.contains("is-editor-open")) {
-      noteEl?.focus();
-      return;
-    }
-    setEditorOpen(true);
+    const open = !root.classList.contains("is-panel-open");
+    setPanelOpen(open);
   });
 
-  btnMin?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setEditorOpen(false);
+  document.querySelector('[data-action="minimize"]')?.addEventListener("click", () => {
+    setPanelOpen(false);
   });
 
-  btnClose?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setEditorOpen(false);
+  document.querySelector('[data-action="close"]')?.addEventListener("click", () => {
+    setPanelOpen(false);
   });
 
-  btnPrev?.addEventListener("click", (e) => {
-    e.stopPropagation();
+  document.querySelector('[data-action="prev-day"]')?.addEventListener("click", () => {
     offset -= 1;
     renderDate();
   });
 
-  btnNext?.addEventListener("click", (e) => {
-    e.stopPropagation();
+  document.querySelector('[data-action="next-day"]')?.addEventListener("click", () => {
     offset += 1;
     renderDate();
   });
 
-  btnToday?.addEventListener("click", (e) => {
-    e.stopPropagation();
+  btnToday?.addEventListener("click", () => {
     offset = 0;
     renderDate();
   });
 
-  stage.querySelectorAll(".dock-item:not(.dock-item--daylog)").forEach((el) => {
-    el.addEventListener("click", () => {
-      el.classList.add("is-nudge");
-      window.setTimeout(() => el.classList.remove("is-nudge"), 400);
+  document.querySelectorAll(".dock-btn:not(.dock-btn--daylog)").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.classList.add("dock-btn--wiggle");
+      window.setTimeout(() => btn.classList.remove("dock-btn--wiggle"), 350);
     });
   });
 })();

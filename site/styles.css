@@ -1,26 +1,22 @@
 :root {
-  color-scheme: light;
-  --paper: #f7f5ef;
-  --ink: #1d1c1a;
-  --muted: #6d6961;
-  --line: #d8d2c6;
-  --button: #1d1c1a;
-  --button-ink: #ffffff;
-  --editor-paper: #fffefa;
-  --stage-bg: #1c1c1e;
-  --stage-bloom: rgba(120, 140, 180, 0.22);
+  --cream: #f3efe4;
+  --ink: #1a1816;
+  --muted: #6a6560;
+  --panel-bg: #fffefa;
+  --panel-border: #ddd6c8;
+  --dock-bg: rgba(38, 38, 42, 0.72);
+  --dock-blur: 28px;
+  --accent: #d47500;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html {
-  background: #ebe7dd;
-  color: var(--ink);
-  font-family: "Segoe UI", system-ui, sans-serif;
-}
-
+html,
 body {
   margin: 0;
 }
@@ -34,377 +30,244 @@ button {
   color: inherit;
 }
 
-.page-shell {
-  min-height: 100vh;
-  padding: 48px clamp(20px, 5vw, 72px);
+code {
+  font-size: 0.9em;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.92fr) minmax(380px, 1.08fr);
-  gap: clamp(28px, 5vw, 72px);
-  align-items: center;
-  min-height: min(78vh, 760px);
-}
+/* —— Full-screen scene (Daily-style) —— */
 
-.eyebrow,
-.lede,
-.details p,
-.install li,
-.storage pre,
-.dock-explainer p {
-  color: var(--muted);
-}
-
-.eyebrow {
-  margin: 0 0 18px;
-  font-size: 0.86rem;
-}
-
-h1 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.6rem, 9vw, 7rem);
-  font-weight: 500;
-  line-height: 0.92;
-}
-
-.lede {
-  max-width: 480px;
-  margin: 26px 0 0;
-  font-size: 1.15rem;
-  line-height: 1.5;
-}
-
-.lede strong {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.actions {
+.scene {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 30px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+  overflow: hidden;
+  color: #fff;
 }
 
-.button {
-  display: inline-flex;
-  min-height: 44px;
+.scene-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #1a2233;
+  background-image:
+    linear-gradient(180deg, rgba(10, 14, 24, 0.15) 0%, rgba(10, 14, 24, 0.65) 100%),
+    url("./bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.scene-bar {
+  position: relative;
+  z-index: 3;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid var(--ink);
-  border-radius: 6px;
-  padding: 0 18px;
-  font-size: 0.95rem;
+  gap: 20px;
+  padding: 14px clamp(16px, 4vw, 32px);
+  background: rgba(12, 12, 14, 0.42);
+  backdrop-filter: blur(20px) saturate(1.2);
+  font-size: 0.8rem;
+}
+
+.scene-brand {
+  font-weight: 600;
   text-decoration: none;
 }
 
-.button.primary {
-  background: var(--button);
-  color: var(--button-ink);
+.scene-link {
+  opacity: 0.85;
+  text-decoration: none;
 }
 
-.button.secondary {
-  background: transparent;
+.scene-link:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
-/* —— Windows demo stage —— */
-
-.win-stage-wrap {
-  width: 100%;
+.scene-bar-spacer {
+  flex: 1;
 }
 
-.win-stage {
+.scene-clock {
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.scene-intro {
   position: relative;
-  min-height: 480px;
-  aspect-ratio: 5 / 4;
-  max-height: min(70vh, 620px);
-  overflow: hidden;
-  border-radius: 10px;
-  background: var(--stage-bg);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 24px 64px rgba(20, 18, 14, 0.22);
+  z-index: 2;
+  max-width: 520px;
+  padding: clamp(20px, 5vh, 48px) clamp(16px, 4vw, 32px) 0;
+  pointer-events: none;
 }
 
-.win-wallpaper {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 30%, var(--stage-bloom), transparent 60%),
-    linear-gradient(180deg, #252528 0%, #141416 100%);
+.scene-tag {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  text-transform: uppercase;
 }
 
-.win-taskbar {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.scene-intro h1 {
+  margin: 12px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  text-shadow: 0 2px 32px rgba(0, 0, 0, 0.45);
+}
+
+.scene-lead {
+  margin: 16px 0 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  opacity: 0.92;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+.scene-lead strong {
+  font-weight: 600;
+}
+
+/* Dock zone — panel + dock anchored bottom center */
+
+.scene-dock-zone {
+  position: relative;
   z-index: 2;
   display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 36px;
-  padding: 0 12px;
-  background: rgba(32, 32, 36, 0.88);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.62rem;
-  backdrop-filter: blur(20px);
-}
-
-.taskbar-start {
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-  background: linear-gradient(135deg, #0078d4, #50a0ff);
-}
-
-.taskbar-search {
-  flex: 0 1 100px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.taskbar-apps {
-  display: flex;
   flex: 1;
-  justify-content: center;
-  gap: 5px;
-}
-
-.taskbar-pill {
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.taskbar-pill--active {
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 -2px 0 #60cdff;
-}
-
-.taskbar-tray {
-  display: flex;
-  gap: 8px;
-  margin-left: auto;
-}
-
-/* Dock — single pill bar */
-
-.cmdpal-dock-shell {
-  position: absolute;
-  right: 0;
-  bottom: 44px;
-  left: 0;
-  z-index: 4;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-end;
+  padding: 0 16px 8px;
+  margin-top: auto;
 }
 
-.demo-hint {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.8rem;
-  pointer-events: none;
-  text-align: center;
-  transition: opacity 0.2s ease;
-}
-
-.demo-hint.is-hidden {
-  opacity: 0;
-}
-
-.cmdpal-dock {
+.panel {
   display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 5px 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  background: rgba(44, 44, 48, 0.78);
-  backdrop-filter: blur(24px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-}
-
-.dock-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  min-width: 44px;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 10px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.88);
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-
-.dock-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.dock-item.is-nudge {
-  animation: dock-nudge 0.35s ease;
-}
-
-.dock-item--daylog {
-  min-width: 56px;
-}
-
-.dock-item--daylog.is-active,
-.dock-item--daylog:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.dock-item--daylog:not(.is-active) {
-  box-shadow: 0 0 0 1px rgba(212, 117, 0, 0.35);
-}
-
-.dock-icon {
-  display: block;
-  border-radius: 5px;
-}
-
-.dock-glyph {
-  display: flex;
-  width: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.dock-label {
-  font-size: 0.58rem;
-  letter-spacing: 0.01em;
-}
-
-/* Editor — anchored above dock */
-
-.win-editor {
-  position: absolute;
-  bottom: 108px;
-  left: 50%;
-  z-index: 6;
-  display: flex;
-  width: min(92%, 380px);
-  max-height: calc(100% - 150px);
+  width: min(100%, 400px);
+  max-height: min(52vh, 420px);
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #d4cec2;
+  border: 1px solid var(--panel-border);
   border-radius: 8px;
-  background: var(--editor-paper);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-  transform: translateX(-50%) translateY(8px) scale(0.98);
+  margin-bottom: 10px;
+  background: var(--panel-bg);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+    0 24px 80px rgba(0, 0, 0, 0.35);
+  color: var(--ink);
   opacity: 0;
   pointer-events: none;
+  transform: translateY(16px) scale(0.96);
+  transform-origin: bottom center;
   transition:
-    opacity 0.28s ease,
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.win-stage.is-editor-open .win-editor {
-  display: flex;
+html.is-panel-open .panel {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0) scale(1);
+  transform: translateY(0) scale(1);
 }
 
-.win-chrome {
+.panel-chrome {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  border-bottom: 1px solid #ebe4d8;
+  background: linear-gradient(180deg, #faf8f3 0%, #f3efe8 100%);
+}
+
+.panel-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #e8e2d8;
-  padding: 0 0 0 12px;
-  background: #faf8f4;
-  color: #3c3832;
+  gap: 8px;
+  padding: 8px 12px;
   font-size: 0.78rem;
 }
 
-.win-title {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 0;
-}
-
-.win-title-icon {
+.panel-title img {
   border-radius: 3px;
 }
 
-.win-controls {
+.panel-winbtns {
   display: flex;
-  align-self: stretch;
 }
 
-.win-control {
+.panel-winbtn {
   display: flex;
-  width: 44px;
+  width: 46px;
   align-items: center;
   justify-content: center;
   border: none;
   background: transparent;
-  color: #5c5650;
+  color: #4a4540;
   cursor: pointer;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
 }
 
-.win-control:hover {
-  background: rgba(0, 0, 0, 0.05);
+.panel-winbtn:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
-.win-control:last-child:hover {
+.panel-winbtn--close:hover {
   background: #e81123;
   color: #fff;
 }
 
-.editor-body {
+.panel-main {
   display: flex;
   min-height: 0;
   flex: 1;
   flex-direction: column;
-  padding: 16px 18px 12px;
+  padding: 14px 16px 12px;
 }
 
-.editor-top {
+.panel-nav {
   display: grid;
   align-items: center;
-  gap: 6px 10px;
-  grid-template-columns: auto 1fr auto;
-  font-family: Georgia, "Times New Roman", serif;
+  gap: 4px 8px;
+  grid-template-columns: 28px 1fr auto;
 }
 
-.editor-date {
+.panel-date {
   margin: 0;
-  font-size: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
   font-weight: 600;
   text-align: center;
 }
 
-.editor-top-nav {
+.panel-nav-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.panel-nav-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ink);
+}
+
+.panel-nav-right {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  gap: 12px;
   font-size: 0.82rem;
 }
 
-.editor-nav,
-.editor-link {
+.panel-nav-text {
   border: none;
   background: none;
   color: var(--muted);
@@ -412,35 +275,36 @@ h1 {
   padding: 0;
 }
 
-.editor-nav:hover,
-.editor-link:hover {
+.panel-nav-text:hover {
   color: var(--ink);
 }
 
-.editor-link--static {
+.panel-nav-text--muted {
   cursor: default;
 }
 
-.editor-note {
+.panel-nav-text--muted:hover {
+  color: var(--muted);
+}
+
+.panel-note {
   flex: 1;
-  min-height: 140px;
-  max-height: 200px;
-  margin-top: 14px;
+  min-height: 120px;
+  margin-top: 12px;
   overflow-y: auto;
-  color: var(--ink);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.92rem;
+  line-height: 1.55;
   outline: none;
   white-space: pre-wrap;
 }
 
-.editor-note:focus-visible {
-  outline: 2px solid rgba(212, 117, 0, 0.4);
-  outline-offset: 2px;
-  border-radius: 3px;
+.panel-note:focus-visible {
+  outline: 2px solid rgba(212, 117, 0, 0.45);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-.editor-foot {
+.panel-foot {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -452,120 +316,207 @@ h1 {
   font-size: 0.72rem;
 }
 
-/* Below fold */
+/* Command Palette Dock */
 
-.dock-explainer {
-  margin-top: 56px;
-  border-top: 1px solid var(--line);
-  padding-top: 32px;
+.dock {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  background: var(--dock-bg);
+  backdrop-filter: blur(var(--dock-blur)) saturate(1.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
-.dock-explainer h2 {
-  margin: 0 0 12px;
+.dock-btn {
+  display: flex;
+  min-width: 40px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.dock-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dock-btn--daylog {
+  min-width: 52px;
+}
+
+.dock-btn.is-active {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.dock-btn--daylog:not(.is-active) {
+  box-shadow: 0 0 0 1px rgba(212, 117, 0, 0.5);
+}
+
+.dock-btn-icon {
+  display: flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.dock-btn-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+}
+
+.dock-btn--wiggle {
+  animation: wiggle 0.35s ease;
+}
+
+/* Taskbar */
+
+.taskbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 clamp(12px, 3vw, 24px);
+  background: rgba(24, 24, 28, 0.82);
+  backdrop-filter: blur(24px);
+  font-size: 0.68rem;
+}
+
+.taskbar-logo {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #0078d4, #4cc2ff);
+}
+
+.taskbar-search {
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.taskbar-spacer {
+  flex: 1;
+}
+
+.taskbar-tray {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Below the fold */
+
+.page {
+  padding: 56px clamp(20px, 5vw, 72px) 80px;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.page-block h2,
+.page-grid h3 {
+  margin: 0 0 10px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.6rem;
   font-weight: 500;
 }
 
-.dock-explainer p {
-  max-width: 720px;
-  margin: 0;
-  line-height: 1.55;
+.page-block h2 {
+  font-size: 1.5rem;
 }
 
-.dock-steps {
-  margin: 20px 0 0;
-  padding-left: 22px;
+.page-block p,
+.page-block li {
+  max-width: 640px;
   color: var(--muted);
   line-height: 1.6;
 }
 
-.dock-steps strong {
+.page-block ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.page-block li + li {
+  margin-top: 6px;
+}
+
+.page-block a {
   color: var(--ink);
 }
 
-.details {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.page-block + .page-grid {
   margin-top: 48px;
-  border-top: 1px solid var(--line);
-  padding-top: 32px;
 }
 
-.details h2,
-.install h2,
-.storage h2 {
-  margin: 0 0 10px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.35rem;
-  font-weight: 500;
+.page-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.details p {
+.page-grid h3 {
+  font-size: 1.15rem;
+}
+
+.page-grid p {
   margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
-.install,
-.storage {
+.page-block:last-child {
   margin-top: 48px;
-  border-top: 1px solid var(--line);
-  padding-top: 32px;
+  border-top: 1px solid #ddd6c8;
+  padding-top: 40px;
 }
 
-.install ol {
-  margin: 0;
-  padding-left: 22px;
-}
+@keyframes wiggle {
+  25% {
+    transform: rotate(-4deg);
+  }
 
-.install li {
-  margin: 8px 0;
-}
-
-.storage pre {
-  overflow-x: auto;
-  margin: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.55);
-}
-
-@keyframes dock-nudge {
-  50% {
-    transform: scale(1.05);
+  75% {
+    transform: rotate(4deg);
   }
 }
 
-@media (max-width: 900px) {
-  .page-shell {
-    padding: 32px 18px;
+@media (max-width: 720px) {
+  .scene-intro h1 {
+    font-size: 1.75rem;
   }
 
-  .hero,
-  .details {
+  .page-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero {
-    min-height: auto;
-  }
-
-  .win-stage {
-    min-height: 400px;
-    max-height: none;
-  }
-
-  .win-editor {
-    width: min(94%, 360px);
-    bottom: 100px;
+  .panel {
+    max-height: 46vh;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .win-editor,
-  .dock-item {
+  .panel,
+  .dock-btn {
     transition: none;
+  }
+
+  .dock-btn--wiggle {
+    animation: none;
   }
 }
