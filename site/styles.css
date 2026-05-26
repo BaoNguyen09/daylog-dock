@@ -465,7 +465,7 @@ button {
   }
 
   .demo-stage {
-    padding-top: 6px;
+    padding-top: 0;
   }
 
   .site-nav {
@@ -474,7 +474,7 @@ button {
 
   .daylog-window {
     max-height: calc(100svh - 116px);
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .editor-shell {
