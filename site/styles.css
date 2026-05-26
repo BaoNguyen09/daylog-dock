@@ -144,7 +144,7 @@ button {
   display: grid;
   align-content: start;
   justify-items: center;
-  padding-top: clamp(10px, 2.5vh, 26px);
+  padding-top: 2px;
 }
 
 .cmdpal-item {
