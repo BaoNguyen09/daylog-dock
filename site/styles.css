@@ -101,7 +101,7 @@ button {
   top: clamp(72px, 12vh, 118px);
   left: clamp(24px, 4vw, 56px);
   max-width: 300px;
-  z-index: 2;
+  z-index: 3;
   pointer-events: auto;
 }
 
@@ -151,6 +151,8 @@ button {
   align-content: start;
   justify-items: center;
   padding-top: 2px;
+  /* Full-width grid row sits over the left copy block; only the window should catch clicks. */
+  pointer-events: none;
 }
 
 .cmdpal-item {
@@ -205,6 +207,7 @@ button {
   background: var(--paper);
   box-shadow: 0 32px 100px rgba(0, 0, 0, 0.58);
   color: var(--ink);
+  pointer-events: auto;
 }
 
 .window-titlebar {
