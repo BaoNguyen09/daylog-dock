@@ -101,6 +101,12 @@ button {
   top: clamp(72px, 12vh, 118px);
   left: clamp(24px, 4vw, 56px);
   max-width: 300px;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.demo-copy p,
+.demo-copy h1 {
   pointer-events: none;
 }
 
